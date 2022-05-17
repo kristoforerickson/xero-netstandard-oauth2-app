@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - XeroNetStandardApp</title>
+    <title>Xero Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
@@ -17,10 +17,10 @@
 
         <div class="row no-gutters">
             <div class="col-3 no-gutters">
-                @await Component.InvokeAsync("SideBar", new { maxPriority = 2, isDone = false })
             </div>
             <div class="col-9 no-gutters">
                 <div class="render-body">
+                    @await Component.InvokeAsync("Login", new { maxPriority = 2, isDone = false })
                     @RenderBody()
                 </div>
             </div>
@@ -28,7 +28,7 @@
 
         <footer>
             <div class="footer">
-                &copy; @DateTime.Now.Year - XeroNetStandardApp
+                &copy; @DateTime.Now.Year - Blue Chip Consulting
             </div>        
         </footer>
         
