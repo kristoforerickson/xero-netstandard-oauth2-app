@@ -20,13 +20,13 @@ public static class TokenUtilities
       this.state = state;
     }
   }
-  public static void StoreToken(XeroOAuth2Token xeroToken)
+  public static void StoreToken(XeroOAuth2Token xeroToken, string? clientName = null, string? location = null)
   {
     string serializedXeroToken = JsonSerializer.Serialize(xeroToken);
     System.IO.File.WriteAllText("./xerotoken.json", serializedXeroToken);
   }
 
-  public static XeroOAuth2Token GetStoredToken()
+  public static XeroOAuth2Token GetStoredToken(string? clientName = null, string? location = null)
   {
     var xeroToken = new XeroOAuth2Token();
     
@@ -42,7 +42,7 @@ public static class TokenUtilities
     return xeroToken;
   }
 
-  public static bool TokenExists()
+  public static bool TokenExists(string? clientName = null, string? location = null)
   {
     string serializedXeroTokenPath = "./xerotoken.json";
     bool fileExist = File.Exists(serializedXeroTokenPath);
@@ -50,7 +50,7 @@ public static class TokenUtilities
     return fileExist;
   }
 
-  public static void DestroyToken()
+  public static void DestroyToken(string? clientName = null, string? location = null)
   {
     string serializedXeroTokenPath = "./xerotoken.json";
     File.Delete(serializedXeroTokenPath);
@@ -63,7 +63,7 @@ public static class TokenUtilities
     public Guid CurrentTenantId { get; set; }
   }
 
-  public static void StoreTenantId(Guid tenantId)
+  public static void StoreTenantId(Guid tenantId, string? clientName = null, string? location = null)
   {
     string serializedXeroToken = JsonSerializer.Serialize(
       new TenantId { CurrentTenantId = tenantId }
@@ -71,7 +71,7 @@ public static class TokenUtilities
     System.IO.File.WriteAllText("./tenantid.json", serializedXeroToken);
   }
 
-  public static Guid GetCurrentTenantId()
+  public static Guid GetCurrentTenantId(string? clientName = null, string? location = null)
   {
     Guid id;
     try
@@ -87,14 +87,14 @@ public static class TokenUtilities
     return id;
   }
 
-  public static void StoreState(string state)
+  public static void StoreState(string state, string? clientName = null, string? location = null)
   {
     State currentState = new State(state);
     string serializedState = JsonSerializer.Serialize(currentState);
     System.IO.File.WriteAllText("./state.json", serializedState);
   }
 
-  public static string GetCurrentState()
+  public static string GetCurrentState(string? clientName = null, string? location = null)
   {
     string state;
     try
